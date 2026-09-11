@@ -1,0 +1,8 @@
+{
+  "id": "clash_royale",
+  "name": "皇室战争",
+  "packageName": "com.supercell.clashroyale",
+  "modelPath": "models/best.pt",
+  "tasks": ["classic_1v1_loop", "daily_shop_free_item"]
+}
+

@@ -1,0 +1,2 @@
+"""Reusable automation core."""
+

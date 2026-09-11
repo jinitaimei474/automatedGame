@@ -1,0 +1,7 @@
+pytest>=8.3,<9
+PyYAML>=6.0,<7
+numpy>=2.0,<3
+opencv-python>=4.10,<5
+ultralytics>=8.3,<9
+lap>=0.5.12,<1
+pyinstaller>=6.11,<7

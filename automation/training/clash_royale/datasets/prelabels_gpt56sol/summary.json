@@ -1,0 +1,48 @@
+{
+  "images": 681,
+  "annotated_images": 663,
+  "candidate_only_images": 18,
+  "yolo_boxes": 824,
+  "class_counts": {
+    "home_screen": 2,
+    "game_mode_panel": 52,
+    "classic_1v1": 10,
+    "matching_screen": 3,
+    "battle_screen": 497,
+    "battle_end": 39,
+    "victory_screen": 11,
+    "defeat_screen": 8,
+    "shop_screen": 70,
+    "daily_trader": 33,
+    "free_item": 49,
+    "claimed_state": 49,
+    "unknown_blocking_popup": 1
+  },
+  "candidate_counts": {
+    "battle_button": 1,
+    "cancel_matching": 3,
+    "classic_1v1": 42,
+    "close_button": 9,
+    "currency_price": 69,
+    "daily_trader": 17,
+    "defeat_screen": 20,
+    "free_item": 1,
+    "leftmost_nav_tab": 1,
+    "matching_screen": 25,
+    "result_crowns_0": 1,
+    "result_crowns_1": 17,
+    "result_crowns_2": 1,
+    "unsupported_loading_screen": 2,
+    "unsupported_non_battle_ui": 8,
+    "victory_screen": 20
+  },
+  "review_priority_counts": {
+    "medium": 623,
+    "high": 58
+  },
+  "image_link_modes": {
+    "existing": 681
+  },
+  "unreadable_images": [],
+  "important": "These are prelabels, not ground truth. Every image remains pending human review."
+}

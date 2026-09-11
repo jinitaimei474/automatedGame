@@ -1,0 +1,38 @@
+path: .
+train: images
+val: images
+names:
+  0: home_screen
+  1: game_mode_button_1
+  2: game_mode_panel
+  3: classic_1v1
+  4: battle_button
+  5: matching_screen
+  6: cancel_matching
+  7: battle_screen
+  8: battle_end
+  9: victory_screen
+  10: defeat_screen
+  11: result_crown_active
+  12: result_crown_inactive
+  13: result_crowns_0
+  14: result_crowns_1
+  15: result_crowns_2
+  16: result_crowns_3
+  17: continue_button
+  18: play_again_button
+  19: close_button
+  20: reward_popup
+  21: leftmost_nav_tab
+  22: shop_screen
+  23: daily_trader
+  24: free_item
+  25: free_label
+  26: claim_button
+  27: claimed_state
+  28: currency_price
+  29: payment_confirmation
+  30: network_error
+  31: maintenance_notice
+  32: login_screen
+  33: unknown_blocking_popup

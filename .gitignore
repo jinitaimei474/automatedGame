@@ -1,0 +1,39 @@
+node_modules/
+dist/
+dist-electron/
+build/
+automation/dist/
+*.spec
+release/
+.tools/
+.venv/
+.venv-win/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+logs/
+.runtime/
+debug-screenshots/
+task-results/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local machine configuration. Copy settings.example.json on each device.
+config/settings.json
+
+# Models and generated training output are large, machine-specific artifacts.
+automation/games/clash_royale/models/*.pt
+automation/games/clash_royale/models/*.onnx
+automation/training/clash_royale/runs/
+
+# Keep dataset structure, metadata and YOLO text labels in Git, but not source
+# videos/screenshots or rendered previews. These local assets are about 1.8 GB.
+automation/training/clash_royale/datasets/raw/
+automation/training/clash_royale/datasets/prelabels_gpt56sol/images/
+automation/training/clash_royale/datasets/prelabels_gpt56sol/previews/
+automation/training/clash_royale/datasets/images/*/*
+automation/training/clash_royale/datasets/labels/*/*
+!.gitkeep

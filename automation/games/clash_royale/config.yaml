@@ -1,0 +1,7 @@
+package_name: com.supercell.clashroyale
+activity: ""
+model_path: models/best.pt
+fallback_coordinates:
+  reference_resolution: [1920, 1080]
+  back: [80, 80]
+

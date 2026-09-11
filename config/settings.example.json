@@ -1,0 +1,26 @@
+{
+  "mockMode": true,
+  "mumuExecutable": "",
+  "adbPath": "adb",
+  "adbSerial": "127.0.0.1:16384",
+  "clashRoyalePackage": "com.supercell.clashroyale",
+  "clashRoyaleActivity": "",
+  "modelPath": "automation/games/clash_royale/models/best.pt",
+  "screenshotIntervalMs": 500,
+  "inferenceIntervalMs": 500,
+  "yoloConfidence": 0.6,
+  "crownConfidence": 0.75,
+  "crownConfirmationFrames": 3,
+  "stateTimeoutSeconds": 30,
+  "maxRetries": 3,
+  "maxCrownFailures": 5,
+  "swipeDistance": 650,
+  "swipeDurationMs": 450,
+  "saveDebugScreenshots": true,
+  "debugScreenshotDirectory": "debug-screenshots",
+  "logLevel": "INFO",
+  "gameLaunchWaitSeconds": 10,
+  "closeGameOnCompletion": false,
+  "closeEmulatorOnCompletion": false
+}
+
