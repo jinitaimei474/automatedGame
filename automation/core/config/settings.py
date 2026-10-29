@@ -15,6 +15,10 @@ class AppSettings:
     clashRoyalePackage: str = "com.supercell.clashroyale"
     clashRoyaleActivity: str = ""
     modelPath: str = "automation/games/clash_royale/models/best.pt"
+    visionBackend: str = "template"
+    visionProfilePath: str = "config/clash_royale/profile.json"
+    maxRounds: int = 20
+    battleTimeoutSeconds: int = 360
     screenshotIntervalMs: int = 500
     inferenceIntervalMs: int = 500
     yoloConfidence: float = 0.6

@@ -9,8 +9,9 @@ from automation.core.adb import AdbClient
 from automation.core.config import AppSettings
 from automation.core.events import EventBus
 from automation.core.safety import SafetyGuard, SafetyViolation
-from automation.core.vision import Detection, VisionEngine, annotate_detections, select_detection
+from automation.core.vision import Detection, annotate_detections, select_detection
 from automation.core.workflow import CancelledError, CancellationToken
+from automation.core.vision.profile import create_detector
 
 
 class LiveDailyShopTask:
@@ -19,7 +20,7 @@ class LiveDailyShopTask:
         self.event_bus = event_bus
         self.token = token
         self.adb = AdbClient(settings.adbPath, settings.adbSerial, token, settings.stateTimeoutSeconds)
-        self.vision = VisionEngine(settings.modelPath, settings.yoloConfidence)
+        self.vision = create_detector(settings)
         self.actions = ActionExecutor(self.adb, token)
         self.guard = SafetyGuard(settings.maxRetries)
         self._resume = asyncio.Event()

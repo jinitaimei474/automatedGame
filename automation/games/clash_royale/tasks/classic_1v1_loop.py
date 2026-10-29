@@ -41,12 +41,13 @@ class Classic1v1LoopTask:
         confirmation_frames: int = 3,
         max_crown_failures: int = 5,
         battle_policy: BattlePolicy | None = None,
+        target_rounds: int | None = None,
     ) -> None:
         self.event_bus = event_bus
         self.token = token
         self.engine = WorkflowEngine(event_bus, token)
-        self.progress = CrownProgressTracker(target_crowns)
-        self.mock_rounds = mock_rounds or [1, 2, 2, 3]
+        self.progress = CrownProgressTracker(target_crowns, target_rounds=target_rounds)
+        self.mock_rounds = mock_rounds or ([0] * target_rounds if target_rounds else [1, 2, 2, 3])
         self.crown_detector = CrownResultDetector(confirmation_frames)
         self.max_crown_failures = max_crown_failures
         self.battle_policy = battle_policy or TrackingOnlyBattlePolicy()

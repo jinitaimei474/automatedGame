@@ -23,6 +23,7 @@ Thumbs.db
 
 # Local machine configuration. Copy settings.example.json on each device.
 config/settings.json
+config/clash_royale/
 
 # Models and generated training output are large, machine-specific artifacts.
 automation/games/clash_royale/models/*.pt

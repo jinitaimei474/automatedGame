@@ -14,3 +14,4 @@ New-Item -ItemType Directory -Force -Path $env:YOLO_CONFIG_DIR | Out-Null
 $env:MPLCONFIGDIR = Join-Path (Get-Location) 'build\matplotlib-config'
 New-Item -ItemType Directory -Force -Path $env:MPLCONFIGDIR | Out-Null
 & $backendPython -m PyInstaller @packageArgs automation/backend.py
+if ($LASTEXITCODE -ne 0) { throw 'Python backend packaging failed' }

@@ -1,3 +1,5 @@
+> 2026-10-29 更新：v0.2.0 已改为模板/颜色识别与固定卡组规则，启动填写目标对局数，连续匹配至完成。MuMu 实机连续两局无人工干预通过。模板位于 `assets/clash_royale/`；详见 [免训练配置](RULE_BATTLE.zh-CN.md)、[实测记录](CLASH_REAL_DEVICE_TEST.zh-CN.md) 和 [打包说明](PACKAGING.zh-CN.md)。下方早期 YOLO/MVP 记录仅作历史背景。
+
 # Codex 项目交接与对话纪要
 
 更新时间：2026-09-11（Asia/Shanghai）

@@ -6,9 +6,9 @@ export function CompletionCard({ progress, onNew }: { progress: CrownProgress; o
     ? Math.max(0, Math.round((Date.parse(progress.completedAt) - Date.parse(progress.startedAt)) / 1000)) : 0;
   return (
     <Alert color="teal" title="任务已完成" radius="lg">
-      <Text mb="sm">自动停止原因：已达到目标皇冠数量。</Text>
+      <Text mb="sm">自动停止原因：{progress.targetRounds != null ? '已完成预设对局数。' : '已达到目标皇冠数量。'}</Text>
       <SimpleGrid cols={{ base: 2, sm: 4 }}>
-        <Text size="sm">目标：{progress.targetCrowns}</Text><Text size="sm">实际：{progress.earnedCrowns}</Text>
+        <Text size="sm">目标：{progress.targetRounds ?? progress.targetCrowns}</Text><Text size="sm">实际：{progress.targetRounds != null ? progress.roundCount : progress.earnedCrowns}</Text>
         <Text size="sm">对局：{progress.roundCount}</Text><Text size="sm">用时：{duration} 秒</Text>
       </SimpleGrid>
       <Text size="xs" c="dimmed" mt="sm">开始：{progress.startedAt ? new Date(progress.startedAt).toLocaleString() : '—'} · 完成：{progress.completedAt ? new Date(progress.completedAt).toLocaleString() : '—'}</Text>

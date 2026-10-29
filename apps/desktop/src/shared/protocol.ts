@@ -33,7 +33,9 @@ export interface CrownProgress {
   earnedCrowns: number;
   remainingCrowns: number;
   roundCount: number;
-  lastRoundCrowns: number;
+  lastRoundCrowns: number | null;
+  targetRounds?: number | null;
+  remainingRounds?: number | null;
   status: string;
   startedAt?: string;
   completedAt?: string | null;

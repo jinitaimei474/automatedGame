@@ -40,6 +40,7 @@ class WorkflowEngine:
         self.event_bus = event_bus
         self.token = token
         self.state = WorkflowState.IDLE
+        self.pause_generation = 0
         self._resume = asyncio.Event()
         self._resume.set()
 
@@ -50,10 +51,12 @@ class WorkflowEngine:
 
     async def checkpoint(self) -> None:
         self.token.throw_if_cancelled()
-        await self._resume.wait()
+        while not self._resume.is_set():
+            await self.token.sleep(.05)
         self.token.throw_if_cancelled()
 
     async def pause(self) -> None:
+        self.pause_generation += 1
         self._resume.clear()
         self.state = WorkflowState.PAUSED
         await self.event_bus.emit("task_paused", {"state": self.state.value})

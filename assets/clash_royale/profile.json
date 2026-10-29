@@ -1,0 +1,383 @@
+{
+  "resolution": [
+    540,
+    960
+  ],
+  "calibrated": true,
+  "templates": [
+    {
+      "label": "home_screen",
+      "file": "templates/home_screen.png",
+      "roi": [
+        0.45555555555555555,
+        0.9666666666666667,
+        0.5462962962962963,
+        0.9927083333333333
+      ],
+      "threshold": 0.96
+    },
+    {
+      "label": "game_mode_button_1",
+      "file": "templates/home_screen.png",
+      "roi": [
+        0.45555555555555555,
+        0.9666666666666667,
+        0.5462962962962963,
+        0.9927083333333333
+      ],
+      "threshold": 0.96,
+      "target": [
+        0.7444444444444445,
+        0.75,
+        0.8407407407407408,
+        0.8125
+      ]
+    },
+    {
+      "label": "classic_1v1",
+      "file": "templates/classic_1v1.png",
+      "roi": [
+        0.037037037037037035,
+        0.28125,
+        0.6574074074074074,
+        0.9895833333333334
+      ],
+      "threshold": 0.93
+    },
+    {
+      "label": "battle_button",
+      "file": "templates/battle_button.png",
+      "roi": [
+        0.4074074074074074,
+        0.7395833333333334,
+        0.6018518518518519,
+        0.8229166666666666
+      ],
+      "threshold": 0.96
+    },
+    {
+      "label": "battle_screen",
+      "file": "templates/battle_screen.png",
+      "roi": [
+        0.022222222222222223,
+        0.8979166666666667,
+        0.1425925925925926,
+        0.9239583333333333
+      ],
+      "threshold": 0.95
+    },
+    {
+      "label": "battle_end",
+      "file": "templates/battle_end.png",
+      "roi": [
+        0.4537037037037037,
+        0.865625,
+        0.5462962962962963,
+        0.8875
+      ],
+      "threshold": 0.96
+    },
+    {
+      "label": "continue_button",
+      "file": "templates/continue_button.png",
+      "roi": [
+        0.4537037037037037,
+        0.865625,
+        0.5462962962962963,
+        0.8875
+      ],
+      "threshold": 0.96
+    },
+    {
+      "label": "classic_mode_ready",
+      "file": "templates/classic_mode_ready.png",
+      "roi": [
+        0.7537037037037037,
+        0.765625,
+        0.8333333333333334,
+        0.8072916666666666
+      ],
+      "threshold": 0.94
+    },
+    {
+      "label": "dismiss_popup_button",
+      "file": "templates/dismiss_rating.png",
+      "roi": [
+        0.6574074074074074,
+        0.5270833333333333,
+        0.7870370370370371,
+        0.5625
+      ],
+      "threshold": 0.97
+    }
+  ],
+  "deck": [
+    {
+      "name": "cannon",
+      "cost": 3,
+      "file": "templates/cannon.png",
+      "placement": [
+        0.5,
+        0.55
+      ],
+      "priority": 3,
+      "threshold": 0.94,
+      "variants": [
+        "templates/cannon_normal.png"
+      ]
+    },
+    {
+      "name": "ice_golem",
+      "cost": 2,
+      "file": "templates/ice_golem.png",
+      "placement": [
+        0.27,
+        0.52
+      ],
+      "priority": 6,
+      "threshold": 0.94
+    },
+    {
+      "name": "musketeer",
+      "cost": 4,
+      "file": "templates/musketeer.png",
+      "placement": [
+        0.27,
+        0.63
+      ],
+      "priority": 5,
+      "threshold": 0.94,
+      "variants": [
+        "templates/musketeer_evolved.png"
+      ]
+    },
+    {
+      "name": "fireball",
+      "cost": 4,
+      "file": "templates/fireball.png",
+      "placement": [
+        0.75,
+        0.18
+      ],
+      "priority": 2,
+      "threshold": 0.94
+    },
+    {
+      "name": "hog_rider",
+      "cost": 4,
+      "file": "templates/hog_rider.png",
+      "placement": [
+        0.27,
+        0.48
+      ],
+      "priority": 10,
+      "threshold": 0.94
+    },
+    {
+      "name": "skeletons",
+      "cost": 1,
+      "file": "templates/skeletons.png",
+      "placement": [
+        0.75,
+        0.57
+      ],
+      "priority": 4,
+      "threshold": 0.94
+    },
+    {
+      "name": "log",
+      "cost": 2,
+      "file": "templates/log.png",
+      "placement": [
+        0.75,
+        0.53
+      ],
+      "priority": 2,
+      "threshold": 0.94
+    },
+    {
+      "name": "ice_spirit",
+      "cost": 1,
+      "file": "templates/ice_spirit.png",
+      "placement": [
+        0.27,
+        0.5
+      ],
+      "priority": 4,
+      "threshold": 0.94
+    }
+  ],
+  "hand_rois": [
+    [
+      0.2222222222222222,
+      0.8072916666666666,
+      0.4074074074074074,
+      0.95625
+    ],
+    [
+      0.40925925925925927,
+      0.8072916666666666,
+      0.5944444444444444,
+      0.95625
+    ],
+    [
+      0.5962962962962963,
+      0.8072916666666666,
+      0.7814814814814814,
+      0.95625
+    ],
+    [
+      0.7833333333333333,
+      0.8072916666666666,
+      0.9685185185185186,
+      0.95625
+    ]
+  ],
+  "elixir_rois": [
+    [
+      0.30925925925925923,
+      0.9822916666666667,
+      0.31666666666666665,
+      0.9864583333333333
+    ],
+    [
+      0.37777777777777777,
+      0.9822916666666667,
+      0.3851851851851852,
+      0.9864583333333333
+    ],
+    [
+      0.4462962962962963,
+      0.9822916666666667,
+      0.4537037037037037,
+      0.9864583333333333
+    ],
+    [
+      0.5148148148148148,
+      0.9822916666666667,
+      0.5222222222222223,
+      0.9864583333333333
+    ],
+    [
+      0.5833333333333334,
+      0.9822916666666667,
+      0.5907407407407408,
+      0.9864583333333333
+    ],
+    [
+      0.6518518518518519,
+      0.9822916666666667,
+      0.6592592592592592,
+      0.9864583333333333
+    ],
+    [
+      0.7203703703703703,
+      0.9822916666666667,
+      0.7277777777777777,
+      0.9864583333333333
+    ],
+    [
+      0.7888888888888889,
+      0.9822916666666667,
+      0.7962962962962963,
+      0.9864583333333333
+    ],
+    [
+      0.8574074074074074,
+      0.9822916666666667,
+      0.8648148148148148,
+      0.9864583333333333
+    ],
+    [
+      0.9259259259259259,
+      0.9822916666666667,
+      0.9333333333333333,
+      0.9864583333333333
+    ]
+  ],
+  "elixir_hsv": [
+    [
+      135,
+      70,
+      70
+    ],
+    [
+      175,
+      255,
+      255
+    ]
+  ],
+  "elixir_coverage": 0.6,
+  "crown_slots": [
+    {
+      "roi": [
+        0.2111111111111111,
+        0.50625,
+        0.32222222222222224,
+        0.5270833333333333
+      ],
+      "empty_file": "templates/crown_empty_0.png",
+      "active_hsv": [
+        [
+          15,
+          100,
+          100
+        ],
+        [
+          40,
+          255,
+          255
+        ]
+      ],
+      "active_coverage": 0.35,
+      "empty_threshold": 0.97
+    },
+    {
+      "roi": [
+        0.4444444444444444,
+        0.50625,
+        0.5555555555555556,
+        0.5270833333333333
+      ],
+      "empty_file": "templates/crown_empty_1.png",
+      "active_hsv": [
+        [
+          15,
+          100,
+          100
+        ],
+        [
+          40,
+          255,
+          255
+        ]
+      ],
+      "active_coverage": 0.35,
+      "empty_threshold": 0.97
+    },
+    {
+      "roi": [
+        0.6777777777777778,
+        0.50625,
+        0.7888888888888889,
+        0.5270833333333333
+      ],
+      "empty_file": "templates/crown_empty_2.png",
+      "active_hsv": [
+        [
+          15,
+          100,
+          100
+        ],
+        [
+          40,
+          255,
+          255
+        ]
+      ],
+      "active_coverage": 0.35,
+      "empty_threshold": 0.97
+    }
+  ],
+  "require_mode_ready": true
+}

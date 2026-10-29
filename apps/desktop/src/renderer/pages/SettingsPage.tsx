@@ -1,4 +1,4 @@
-import { Alert, Button, Card, Checkbox, Group, NumberInput, SimpleGrid, Stack, Switch, Text, TextInput, Title } from '@mantine/core';
+import { Alert, Button, Card, Checkbox, Group, NumberInput, Select, SimpleGrid, Stack, Switch, Text, TextInput, Title } from '@mantine/core';
 import { useState } from 'react';
 
 const pathFields = [
@@ -14,6 +14,10 @@ export function SettingsPage({ settings, setSettings }: { settings: Record<strin
     <div><Text c="cyan" fw={700} size="sm">CONFIGURATION</Text><Title order={2}>设置</Title><Text c="dimmed">所有环境路径和识别阈值均可编辑</Text></div>
     {notice && <Alert color={notice.startsWith('保存失败') ? 'red' : 'teal'}>{notice}</Alert>}
     <Card className="panel" radius="lg"><Title order={4} mb="md">模拟器与模型</Title><Stack>
+      <Select label="识别方式" data={[{ value: 'template', label: '模板与颜色（免训练）' }, { value: 'yolo', label: 'YOLO（保留兼容）' }]} value={String(settings.visionBackend || 'template')} onChange={(value) => update('visionBackend', value || 'template')} />
+      <TextInput label="模板与固定卡组配置路径" description="首次使用请按 docs/RULE_BATTLE.zh-CN.md 校准截图、卡组和落点。" value={String(settings.visionProfilePath || 'config/clash_royale/profile.json')} onChange={(event) => update('visionProfilePath', event.currentTarget.value)} />
+      <NumberInput label="默认对局数" description="启动任务时可修改，本次启动填写的局数优先" min={1} max={1000} value={Number(settings.maxRounds ?? 20)} onChange={(value) => update('maxRounds', value)} />
+      <NumberInput label="每局最长时间（秒）" min={30} value={Number(settings.battleTimeoutSeconds ?? 360)} onChange={(value) => update('battleTimeoutSeconds', value)} />
       {pathFields.map(([key, label, kind]) => <Group key={key} align="end"><TextInput label={label} value={String(settings[key] || '')} onChange={(event) => update(key, event.currentTarget.value)} style={{ flex: 1 }} /><Button variant="default" onClick={async () => { const path = await window.gameHub?.chooseFile(kind); if (path) update(key, path); }}>选择</Button></Group>)}
       <SimpleGrid cols={{ base: 1, sm: 2 }}><TextInput label="ADB 设备序列号" value={String(settings.adbSerial || '')} onChange={(e) => update('adbSerial', e.currentTarget.value)} /><TextInput label="游戏包名" value={String(settings.clashRoyalePackage || '')} onChange={(e) => update('clashRoyalePackage', e.currentTarget.value)} /><TextInput label="启动 Activity（可留空）" value={String(settings.clashRoyaleActivity || '')} onChange={(e) => update('clashRoyaleActivity', e.currentTarget.value)} /><TextInput label="调试截图目录" value={String(settings.debugScreenshotDirectory || '')} onChange={(e) => update('debugScreenshotDirectory', e.currentTarget.value)} /></SimpleGrid>
     </Stack></Card>

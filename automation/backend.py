@@ -17,6 +17,7 @@ from automation.core.tasks import ParameterValidationError, TaskSession, validat
 from automation.core.workflow import CancellationToken
 from automation.games.clash_royale.tasks import Classic1v1LoopTask, DailyShopFreeItemTask, LiveClassic1v1Task, LiveDailyShopTask
 from automation.games.registry import PluginRegistry
+from automation.core.vision.profile import create_detector
 
 
 class BackendService:
@@ -68,10 +69,11 @@ class BackendService:
             if command == "test_model":
                 if self.settings.mockMode:
                     detail = "Mock 检测器可用"
-                elif not Path(self.settings.modelPath).is_file():
-                    raise FileNotFoundError(f"模型不存在: {self.settings.modelPath}")
                 else:
-                    detail = f"模型文件可读: {self.settings.modelPath}"
+                    detector = create_detector(self.settings)
+                    if self.settings.visionBackend == 'template':
+                        detector.validate_battle()
+                    detail = f"识别器已加载: {self.settings.visionBackend}"
             elif command == "test_crown_detection":
                 detail = "Mock 皇冠结果 2 已连续 3 帧确认" if self.settings.mockMode else "请在结算页面执行真实皇冠测试"
             else:
@@ -100,7 +102,7 @@ class BackendService:
             await self.event_bus.emit("task_failed", {"message": str(exc)})
             return
         if not self.settings.mockMode:
-            if not Path(self.settings.modelPath).is_file():
+            if self.settings.visionBackend == 'yolo' and not Path(self.settings.modelPath).is_file():
                 await self.event_bus.emit("task_failed", {"message": f"正式模式需要有效的 YOLO 模型；当前路径不存在: {self.settings.modelPath}"})
                 return
             if not self.settings.adbSerial:
@@ -114,17 +116,17 @@ class BackendService:
             try:
                 if self.settings.mockMode:
                     self.current_task = Classic1v1LoopTask(
-                        int(parameters["targetCrowns"]), self.event_bus, token,
+                        9999, self.event_bus, token, target_rounds=int(parameters['targetRounds']),
                         mock_rounds=rounds if isinstance(rounds, list) else None,
                         confirmation_frames=self.settings.crownConfirmationFrames,
                         max_crown_failures=self.settings.maxCrownFailures,
                     )
                 else:
-                    self.current_task = LiveClassic1v1Task(int(parameters["targetCrowns"]), self.settings, self.event_bus, token)
+                    self.current_task = LiveClassic1v1Task(9999, self.settings, self.event_bus, token, target_rounds=int(parameters['targetRounds']))
             except Exception as exc:
                 await self.event_bus.emit("task_failed", {"message": f"任务初始化失败: {exc}"})
                 return
-            await self.event_bus.emit("log_message", {"level": "INFO", "message": f"会话 {self.session_id} 已创建，目标皇冠 {parameters['targetCrowns']}"})
+            await self.event_bus.emit("log_message", {"level": "INFO", "message": f"会话 {self.session_id} 已创建，目标 {parameters['targetRounds']} 局"})
             self.runner = asyncio.create_task(self.current_task.run())
         elif definition.id == "daily_shop_free_item":
             try:
@@ -169,6 +171,10 @@ async def main(config_path: str = "config/settings.json") -> None:
 
 
 if __name__ == "__main__":
+    # Frozen Python may ignore PYTHONIOENCODING; Electron's pipe is always UTF-8.
+    for stream in (sys.stdin, sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(encoding='utf-8')
     if str(Path.cwd()) not in sys.path:
         sys.path.insert(0, str(Path.cwd()))
     parser = argparse.ArgumentParser(description="Game Automation Hub JSON-lines backend")

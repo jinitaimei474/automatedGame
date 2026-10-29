@@ -22,7 +22,7 @@ export function App() {
   const [selectedTask, setSelectedTask] = useState<TaskManifest | null>(null);
 
   const requestStart = (task: TaskManifest) => {
-    if (task.parameters.length) setSelectedTask(task);
+    if (task.parameters.length) setSelectedTask({ ...task, parameters: task.parameters.map((p) => p.key === 'targetRounds' ? { ...p, defaultValue: Number(backend.settings.maxRounds ?? p.defaultValue) } : p) });
     else backend.send({ type: 'start_task', payload: { gameId: 'clash_royale', taskId: task.id, parameters: {} } });
   };
   const startClassic = (parameters: Record<string, unknown>) => {

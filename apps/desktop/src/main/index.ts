@@ -1,6 +1,6 @@
 import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import { ChildProcessWithoutNullStreams, spawn } from 'node:child_process';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, writeFileSync, copyFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
 import type { ClientMessage } from '../shared/protocol';
@@ -19,8 +19,19 @@ function backendCommand(): { command: string; args: string[] } {
 }
 
 function startBackend(): void {
+  const workingDirectory = app.isPackaged ? app.getPath('userData') : resolve(__dirname, '../..');
+  if (app.isPackaged) {
+    const configDirectory = join(workingDirectory, 'config');
+    mkdirSync(configDirectory, { recursive: true });
+    if (!existsSync(join(configDirectory, 'settings.json'))) {
+      copyFileSync(join(process.resourcesPath, 'config', 'settings.example.json'), join(configDirectory, 'settings.json'));
+    }
+    if (!existsSync(join(configDirectory, 'clash_royale', 'profile.json'))) {
+      cpSync(join(process.resourcesPath, 'config', 'clash_royale'), join(configDirectory, 'clash_royale'), { recursive: true });
+    }
+  }
   const { command, args } = backendCommand();
-  backend = spawn(command, args, { cwd: app.isPackaged ? process.resourcesPath : resolve(__dirname, '../..'), windowsHide: true });
+  backend = spawn(command, args, { cwd: workingDirectory, windowsHide: true, env: { ...process.env, PYTHONIOENCODING: 'utf-8' } });
   const lines = createInterface({ input: backend.stdout });
   lines.on('line', (line) => {
     try {

@@ -1,9 +1,13 @@
 {
   "mockMode": true,
+  "visionBackend": "template",
+  "visionProfilePath": "config/clash_royale/profile.json",
+  "maxRounds": 2,
+  "battleTimeoutSeconds": 360,
   "mumuExecutable": "",
   "adbPath": "adb",
   "adbSerial": "127.0.0.1:16384",
-  "clashRoyalePackage": "com.supercell.clashroyale",
+  "clashRoyalePackage": "com.tencent.tmgp.supercell.clashroyale",
   "clashRoyaleActivity": "",
   "modelPath": "automation/games/clash_royale/models/best.pt",
   "screenshotIntervalMs": 500,
@@ -23,4 +27,3 @@
   "closeGameOnCompletion": false,
   "closeEmulatorOnCompletion": false
 }
-

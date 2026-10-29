@@ -1,6 +1,6 @@
 # Game Automation Hub
 
-Game Automation Hub 是一个面向 Windows 的插件式游戏自动化桌面应用。当前提供《皇室战争》经典 1v1 皇冠目标任务和每日商人免费物品任务；默认以 Mock 模式运行，不需要真实账号、模型或模拟器即可验证 UI、状态机、皇冠累计、去重与自动停止。
+Game Automation Hub 是一个面向 Windows 的插件式游戏自动化桌面应用。当前提供《皇室战争》经典 1v1 连续对局任务和每日商人免费物品任务；默认以 Mock 模式运行，不需要真实账号、模型或模拟器即可验证 UI、状态机、皇冠累计、去重与自动停止。
 
 > 安全边界：项目不实现反检测、验证码绕过或反作弊规避。检测到登录、网络异常、未知阻塞页、价格或支付确认时会暂停。每日商人只有在同时识别 `daily_trader`、`free_item` 和 `free_label` 时才允许领取。
 
@@ -68,10 +68,12 @@ automation/games/clash_royale/models/best.pt
 
 - 所有状态变更通过 EventBus 推送；等待、重试和滑动均有上限并检查统一取消令牌。
 - `CrownResultDetector` 仅接受 0～3，要求连续多帧一致；不一致不猜测。
-- `CrownProgressTracker` 用唯一 `resultId` 去重，并作为唯一的 `earned >= target` 完成判断源。
+- `CrownProgressTracker` 用唯一 `resultId` 去重，统一判断局数目标是否完成；旧皇冠模式保留兼容。
 - 达标分支直接进入 `TARGET_REACHED`，取消后续动作，不进入 `START_NEXT_ROUND`。
 - 任务结果保存到 `task-results/<sessionId>.json`。新建任务始终从 0 开始，不静默恢复旧进度。
 
 ## 当前限制
 
-第一版 `TrackingOnlyBattlePolicy` 是明确标注的 MVP：只跟踪对局状态，不自动出牌。正式模式已连接 MuMu/ADB、YOLO 安全二次确认、页面状态机、实时检测预览、结算皇冠确认和每日免费物品保护，但真实权重和经过标注的游戏截图未随仓库提供，因此没有声称训练精度。默认 Mock 工作流可完整验证产品逻辑；正式模式仍必须先用用户采集的数据训练模型，并在真实设备上人工验收类别阈值与页面覆盖率。
+真实 1v1 已加入模板/颜色识别与固定卡组规则出牌，支持结算后继续下一局，完成启动时填写的目标局数后停止。默认 Mock 保留；YOLO 可作为兼容识别后端。
+
+首次真实运行需要校准本机截图、八张卡牌、圣水采样区域和出牌落点，见 [免训练对局配置](docs/RULE_BATTLE.zh-CN.md)。不需要制作 YOLO 标注数据集。仓库的 `assets/clash_royale/` 附带本次 MuMu 国服校准模板，安装包首次运行会复制到用户配置目录；其他卡组或界面需要重新校准。连续两局实机验收见 [测试记录](docs/CLASH_REAL_DEVICE_TEST.zh-CN.md)。

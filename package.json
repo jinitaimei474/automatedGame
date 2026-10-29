@@ -1,6 +1,6 @@
 {
   "name": "game-automation-hub",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "插件式 Windows 游戏自动化桌面应用",
   "main": "dist-electron/main/index.js",
@@ -49,14 +49,34 @@
   "build": {
     "appId": "com.gameautomation.hub",
     "productName": "Game Automation Hub",
-    "directories": { "output": "release" },
-    "files": ["dist/**/*", "dist-electron/**/*", "package.json"],
-    "extraResources": [
-      { "from": "config", "to": "config" },
-      { "from": "automation/dist/game-automation-backend.exe", "to": "backend/game-automation-backend.exe" },
-      { "from": "automation/games/clash_royale/models", "to": "automation/games/clash_royale/models" }
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
     ],
-    "win": { "target": "nsis" },
-    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true }
+    "extraResources": [
+      {
+        "from": "config/settings.example.json",
+        "to": "config/settings.example.json"
+      },
+      {
+        "from": "assets/clash_royale",
+        "to": "config/clash_royale"
+      },
+      {
+        "from": "automation/dist/game-automation-backend.exe",
+        "to": "backend/game-automation-backend.exe"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
